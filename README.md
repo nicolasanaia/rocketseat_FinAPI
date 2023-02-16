@@ -1,7 +1,5 @@
 # FinAPI - Financeira
 
----
-
 ### Requisitos
 
 [X] Deve ser possível criar umma conta
