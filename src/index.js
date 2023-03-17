@@ -1,4 +1,3 @@
-const e = require('express');
 const express = require('express');
 const { v4 } = require('uuid');
 
@@ -11,9 +10,9 @@ const customers = [];
 function verifyCPFExistence(request, response, next) {
     const { cpf } = request.headers;
 
-    const customer = customers.find((customer) => customer.cpf ===cpf);
+    const customer = customers.find((customer) => customer.cpf === cpf);
 
-    if(!customer) return response.status(400).json({error: 'Customer not found'});
+    if (!customer) return response.status(400).json({ error: 'Customer not found' });
 
     request.customer = customer;
 
@@ -64,7 +63,7 @@ app.post('/deposit', verifyCPFExistence, (request, response) => {
     const { description, amount } = request.body;
 
     const { customer } = request;
-    
+
     const statement_operation = {
         description,
         amount,
@@ -105,8 +104,8 @@ app.get('/statement/date', verifyCPFExistence, (request, response) => {
     const date_format = new Date(date + ' 00:00');
 
     const statement = customer.statement.filter(
-        (statement) => 
-            statement.created_at.toDateString() === 
+        (statement) =>
+            statement.created_at.toDateString() ===
             new Date(date_format).toDateString()
     );
 
